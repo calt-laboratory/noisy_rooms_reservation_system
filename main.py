@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 
-from src.hotel.database.engine import initialize_database, DBSession
-from src.hotel.database.models import DBNoisyRoom
+from src.database.engine import initialize_database
+from src.routers import noisy_rooms
+import uvicorn
 
 DB_FILE = "sqlite:///noisy_rooms.db"
 
@@ -19,8 +20,12 @@ def read_root() -> str:
     return "The server is running!"
 
 
-@app.get("/noisy_room")
-def read_all_noisy_rooms():
-    session = DBSession()
-    noisy_rooms = session.query(DBNoisyRoom).all()
-    return noisy_rooms
+app.include_router(noisy_rooms.router)
+
+
+def main() -> None:
+    uvicorn.run(app, host="127.0.0.1", port=8000)
+
+
+if __name__ == "__main__":
+    main()

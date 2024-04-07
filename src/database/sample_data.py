@@ -1,4 +1,4 @@
-from src.hotel.database.models import DBCustomer, DBNoisyRoom
+from src.database.models import DBCustomer, DBNoisyRoom
 
 
 customers = [
