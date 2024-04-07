@@ -1,7 +1,8 @@
-from sqlalchemy.engine.base import Engine
 from sqlalchemy.engine import create_engine
-from src.database.models import Base
+from sqlalchemy.engine.base import Engine
 from sqlalchemy.orm import sessionmaker
+
+from src.database.models import Base
 
 engine: Engine | None = None
 DBSession = sessionmaker()

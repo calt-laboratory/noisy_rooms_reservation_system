@@ -1,31 +1,22 @@
 from src.database.models import DBCustomer, DBNoisyRoom
 
-
 customers = [
-    DBCustomer(
-        first_name="Grace",
-        last_name="Hopper",
-        email_adress="gradce_hopper@proton.me"
-    ),
-    DBCustomer(
-        first_name="Barbara",
-        last_name="Liskov",
-        email_adress="barbara_liskov@web.de"
-    ),
+    DBCustomer(first_name="Grace", last_name="Hopper", email_address="gradce_hopper@proton.me"),
+    DBCustomer(first_name="Barbara", last_name="Liskov", email_address="barbara_liskov@web.de"),
     DBCustomer(
         first_name="Lynn",
         last_name="Conway",
-        email_adress="lynn_conway@posteo.de",
+        email_address="lynn_conway@posteo.de",
     ),
     DBCustomer(
         first_name="Howard",
         last_name="Rosenbrock",
-        email_adress="howard_rosenbrock@posteo.de",
+        email_address="howard_rosenbrock@posteo.de",
     ),
     DBCustomer(
         first_name="Alexey",
         last_name="Chervonenkis",
-        email_adress="alexey_chervonenkis@gmx.de",
+        email_address="alexey_chervonenkis@gmx.de",
     ),
 ]
 
