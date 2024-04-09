@@ -1,12 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
 
-from src.database.create_database import create_database
 from src.database.engine import initialize_database
 from src.routers import noisy_rooms
 
 DB_FILE = "sqlite:///noisy_rooms.db"
-create_database(file=DB_FILE)
+# create_database(file=DB_FILE)
 
 app = FastAPI()
 

@@ -9,6 +9,7 @@ def read_all_noisy_rooms() -> list[DBNoisyRoom]:
     """
     session = DBSession()
     noisy_rooms = session.query(DBNoisyRoom).all()
+    session.close()
     return noisy_rooms
 
 
@@ -20,5 +21,6 @@ def read_noisy_room(noisy_room_id: int) -> DBNoisyRoom:
     @return: Noisy room
     """
     session = DBSession()
-    noisy_room = session.query().get(noisy_room_id)
+    noisy_room = session.query(DBNoisyRoom).get(noisy_room_id)
+    session.close()
     return noisy_room
