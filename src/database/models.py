@@ -7,7 +7,7 @@ from sqlalchemy.sql.sqltypes import DateTime, Integer, String
 Base = declarative_base()
 
 
-class DBCustomer(Base):
+class DBNoisician(Base):
     __tablename__ = "customer"
     id = Column(Integer, primary_key=True, autoincrement=True)
     first_name = Column(String(250), nullable=False)
@@ -31,6 +31,6 @@ class DBReservation(Base):
     price = Column(Integer, nullable=False)
 
     customer_id = Column(Integer, ForeignKey("customer.id"))
-    customer = relationship(DBCustomer)
+    customer = relationship(DBNoisician)
     noisy_room_id = Column(Integer, ForeignKey("noisy_room.id"))
     noisy_room = relationship(DBNoisyRoom)

@@ -1,19 +1,19 @@
-from src.database.models import DBCustomer, DBNoisyRoom
+from src.database.models import DBNoisician, DBNoisyRoom
 
 customers = [
-    DBCustomer(first_name="Grace", last_name="Hopper", email_address="gradce_hopper@proton.me"),
-    DBCustomer(first_name="Barbara", last_name="Liskov", email_address="barbara_liskov@web.de"),
-    DBCustomer(
+    DBNoisician(first_name="Grace", last_name="Hopper", email_address="gradce_hopper@proton.me"),
+    DBNoisician(first_name="Barbara", last_name="Liskov", email_address="barbara_liskov@web.de"),
+    DBNoisician(
         first_name="Lynn",
         last_name="Conway",
         email_address="lynn_conway@posteo.de",
     ),
-    DBCustomer(
+    DBNoisician(
         first_name="Howard",
         last_name="Rosenbrock",
         email_address="howard_rosenbrock@posteo.de",
     ),
-    DBCustomer(
+    DBNoisician(
         first_name="Alexey",
         last_name="Chervonenkis",
         email_address="alexey_chervonenkis@gmx.de",
