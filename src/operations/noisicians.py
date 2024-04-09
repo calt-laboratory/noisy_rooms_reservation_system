@@ -1,5 +1,13 @@
+from pydantic import BaseModel
+
 from src.database.engine import DBSession
-from src.database.models import DBNoisician
+from src.database.models import DBNoisician, convert_to_dict
+
+
+class NoisicianCreateData(BaseModel):
+    first_name: str
+    last_name: str
+    email_address: str
 
 
 def read_all_noisicians() -> list[DBNoisician]:
@@ -10,7 +18,7 @@ def read_all_noisicians() -> list[DBNoisician]:
     session = DBSession()
     noisicians = session.query(DBNoisician).all()
     session.close()
-    return noisicians
+    return [convert_to_dict(n) for n in noisicians]
 
 
 def read_noisician(noisician_id: int) -> DBNoisician:
@@ -23,4 +31,12 @@ def read_noisician(noisician_id: int) -> DBNoisician:
     session = DBSession()
     noisician = session.query(DBNoisician).get(noisician_id)
     session.close()
-    return noisician
+    return convert_to_dict(noisician)
+
+
+def create_nosician(data: NoisicianCreateData):
+    session = DBSession()
+    noisician = DBNoisician(**data.dict())
+    session.add(noisician)
+    session.commit()
+    return convert_to_dict(noisician)

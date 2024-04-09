@@ -1,5 +1,5 @@
 from src.database.engine import DBSession
-from src.database.models import DBNoisyRoom
+from src.database.models import DBNoisyRoom, convert_to_dict
 
 
 def read_all_noisy_rooms() -> list[DBNoisyRoom]:
@@ -10,7 +10,7 @@ def read_all_noisy_rooms() -> list[DBNoisyRoom]:
     session = DBSession()
     noisy_rooms = session.query(DBNoisyRoom).all()
     session.close()
-    return noisy_rooms
+    return [convert_to_dict(nr) for nr in noisy_rooms]
 
 
 def read_noisy_room(noisy_room_id: int) -> DBNoisyRoom:
@@ -23,4 +23,4 @@ def read_noisy_room(noisy_room_id: int) -> DBNoisyRoom:
     session = DBSession()
     noisy_room = session.query(DBNoisyRoom).get(noisy_room_id)
     session.close()
-    return noisy_room
+    return convert_to_dict(noisy_room)
