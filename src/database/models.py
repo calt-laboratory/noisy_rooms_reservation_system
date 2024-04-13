@@ -10,11 +10,15 @@ Base = declarative_base()
 
 
 def convert_to_dict(obj: Base) -> dict[str, Any]:
-    return {n.name: getattr(obj, n.name) for n in obj.__table__.columns}
+    result_dict = {}
+    for column in obj.__table__.columns:
+        column_value = getattr(obj, column.name)
+        result_dict[column.name] = column_value
+    return result_dict
 
 
 class DBNoisician(Base):
-    __tablename__ = "customer"
+    __tablename__ = "noisician"
     id = Column(Integer, primary_key=True, autoincrement=True)
     first_name = Column(String(250), nullable=False)
     last_name = Column(String(250), nullable=False)
@@ -36,7 +40,7 @@ class DBReservation(Base):
     to_time = Column(DateTime, nullable=False)
     price = Column(Integer, nullable=False)
 
-    customer_id = Column(Integer, ForeignKey("customer.id"))
-    customer = relationship(DBNoisician)
+    noisician_id = Column(Integer, ForeignKey("noisician.id"))
+    noisician = relationship(DBNoisician)
     noisy_room_id = Column(Integer, ForeignKey("noisy_room.id"))
     noisy_room = relationship(DBNoisyRoom)

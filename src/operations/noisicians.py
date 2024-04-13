@@ -31,7 +31,7 @@ def read_noisician(noisician_id: int) -> DBNoisician:
     session = DBSession()
     noisician = session.query(DBNoisician).get(noisician_id)
     session.close()
-    return convert_to_dict(noisician)
+    return convert_to_dict(obj=noisician)
 
 
 def create_nosician(data: NoisicianCreateData):

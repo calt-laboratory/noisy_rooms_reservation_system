@@ -1,11 +1,19 @@
+from pathlib import Path
+
 import uvicorn
 from fastapi import FastAPI
 
 from src.database.engine import initialize_database
+from src.database.create_database import create_database
 from src.routers import noisicians, noisy_rooms
 
 DB_FILE = "sqlite:///noisy_rooms.db"
-# create_database(file=DB_FILE)
+
+if not Path("noisy_rooms.db").exists():
+    create_database(file=DB_FILE)
+else:
+    print(f"Database file '{Path(DB_FILE).stem}' already exists. Skipping creation.")
+
 
 app = FastAPI()
 
