@@ -1,7 +1,13 @@
 from fastapi import APIRouter
 
-from src.operations.noisicians import NoisicianCreateData, create_nosician, read_all_noisicians, read_noisician, \
-    NoisicianUpdateData, update_noisician
+from src.operations.noisicians import (
+    NoisicianCreateData,
+    NoisicianUpdateData,
+    create_nosician,
+    read_all_noisicians,
+    read_noisician,
+    update_noisician,
+)
 
 router = APIRouter()
 
@@ -19,6 +25,7 @@ def api_read_noisician(noisician_id: int):
 @router.post("/noisician")
 def api_create_noisician(noisician: NoisicianCreateData):
     return create_nosician(data=noisician)
+
 
 @router.post("/noisician/{noisician_id}")
 def api_update_noisician(noisician_id: int, data: NoisicianUpdateData):

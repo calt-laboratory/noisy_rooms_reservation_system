@@ -4,7 +4,7 @@ from sqlalchemy import Column
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import ForeignKey
-from sqlalchemy.sql.sqltypes import DateTime, Integer, String
+from sqlalchemy.sql.sqltypes import Date, Integer, String
 
 Base = declarative_base()
 
@@ -34,10 +34,10 @@ class DBNoisyRoom(Base):
 
 
 class DBBooking(Base):
-    __tablename__ = "reservation"
+    __tablename__ = "booking"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    from_time = Column(DateTime, nullable=False)
-    to_time = Column(DateTime, nullable=False)
+    from_date = Column(Date, nullable=False)
+    to_date = Column(Date, nullable=False)
     price = Column(Integer, nullable=False)
 
     noisician_id = Column(Integer, ForeignKey("noisician.id"))

@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 from src.database.engine import initialize_database
 from src.database.create_database import create_database
-from src.routers import noisicians, noisy_rooms
+from src.routers import noisicians, noisy_rooms, bookings
 
 DB_FILE = "sqlite:///noisy_rooms.db"
 
@@ -31,6 +31,7 @@ def read_root() -> str:
 
 app.include_router(noisy_rooms.router)
 app.include_router(noisicians.router)
+app.include_router(bookings.router)
 
 
 def main() -> None:

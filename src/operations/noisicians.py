@@ -17,6 +17,7 @@ class NoisicianUpdateData(BaseModel):
     last_name: Optional[str]
     email_address: Optional[str]
 
+
 def read_all_noisicians() -> list[DBNoisician]:
     """
     Queries the database for all noisicians.
