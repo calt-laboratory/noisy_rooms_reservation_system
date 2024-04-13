@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 from src.database.engine import DBSession
-from src.database.models import DBNoisician, convert_to_dict, DBNoisyRoom
+from src.database.models import DBNoisician, convert_to_dict
 
 
 class NoisicianCreateData(BaseModel):

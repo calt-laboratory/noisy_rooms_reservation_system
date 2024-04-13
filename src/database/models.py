@@ -33,7 +33,7 @@ class DBNoisyRoom(Base):
     price = Column(Integer, nullable=False)
 
 
-class DBReservation(Base):
+class DBBooking(Base):
     __tablename__ = "reservation"
     id = Column(Integer, primary_key=True, autoincrement=True)
     from_time = Column(DateTime, nullable=False)
