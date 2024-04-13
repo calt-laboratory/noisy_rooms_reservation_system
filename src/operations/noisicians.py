@@ -1,7 +1,9 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 from src.database.engine import DBSession
-from src.database.models import DBNoisician, convert_to_dict
+from src.database.models import DBNoisician, convert_to_dict, DBNoisyRoom
 
 
 class NoisicianCreateData(BaseModel):
@@ -9,6 +11,11 @@ class NoisicianCreateData(BaseModel):
     last_name: str
     email_address: str
 
+
+class NoisicianUpdateData(BaseModel):
+    first_name: Optional[str]
+    last_name: Optional[str]
+    email_address: Optional[str]
 
 def read_all_noisicians() -> list[DBNoisician]:
     """
@@ -38,5 +45,14 @@ def create_nosician(data: NoisicianCreateData):
     session = DBSession()
     noisician = DBNoisician(**data.dict())
     session.add(noisician)
+    session.commit()
+    return convert_to_dict(noisician)
+
+
+def update_noisician(noisician_id: int, data: NoisicianUpdateData):
+    session = DBSession()
+    noisician = session.query(DBNoisician).get(noisician_id)
+    for key, value in data.dict(exclude_none=True).items():
+        setattr(noisician, key, value)
     session.commit()
     return convert_to_dict(noisician)
