@@ -6,14 +6,14 @@ from src.database.models import Base, convert_to_dict
 DataObject = dict[str, Any]
 
 
-class DBInterface(Protocol):
+class DataBaseInterface(Protocol):
 
     def __init__(self, db_class: type[Base]) -> None:
         self.db_class = db_class
 
     def read_by_id(self, id: int) -> DataObject:
         session = DBSession()
-        result = session.quey(self.db_class).get(id)
+        result = session.query(self.db_class).get(id)
         return convert_to_dict(result)
 
     def read_all(self) -> list[DataObject]:
